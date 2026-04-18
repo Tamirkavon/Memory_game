@@ -2,3 +2,7 @@ node_modules
 dist
 .claude
 tmp_*.txt
+*.txt
+*.png
+.playwright-mcp/
+tsconfig.tsbuildinfo
