@@ -21,6 +21,6 @@ export const hobbiesCategory: Category = {
     { id: 'hob-12', english: 'crafts', hebrew: 'יצירה', emoji: '✂️', definition: 'Making things by hand', sentence: 'We do ___ in art class on Fridays' },
     { id: 'hob-13', english: 'puzzles', hebrew: 'פאזלים', emoji: '🧩', definition: 'Games that test your thinking', sentence: 'I love solving ___ with 1000 pieces' },
     { id: 'hob-14', english: 'camping', hebrew: 'קמפינג', emoji: '⛺', definition: 'Sleeping outdoors in a tent', sentence: 'We went ___ near the lake' },
-    { id: 'hob-15', english: 'collecting', hebrew: 'אסיפה', emoji: '🪙', definition: 'Gathering items as a hobby', sentence: 'He enjoys ___ rare coins' },
+    { id: 'hob-15', english: 'collecting', hebrew: 'לאסוף', emoji: '🪙', definition: 'Gathering items as a hobby', sentence: 'He enjoys ___ rare coins' },
   ],
 };

@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --font-game: 'Fredoka', sans-serif;
-  --color-coral: #ff6b6b;
-  --color-coral-dark: #e55a5a;
-  --color-amber: #feca57;
-  --color-amber-dark: #f0b72f;
-  --color-teal: #00d2d3;
-  --color-teal-dark: #00b8b9;
-  --color-mint: #26de81;
-  --color-mint-dark: #20c997;
-  --color-navy: #0a1628;
-  --color-navy-light: #132040;
-  --color-navy-card: #1a2a4a;
-  --color-slate-card: #243352;
-  --color-neon-pink: #ff6b9d;
-  --color-neon-blue: #4ecdc4;
-  --color-neon-purple: #a855f7;
+  --font-game: 'Space Grotesk', sans-serif;
+
+  /* New palette — warm dark + electric lime */
+  --color-bg:          #0e0d0b;
+  --color-surface:     #191714;
+  --color-surface-up:  #231f1a;
+  --color-border:      rgba(240, 237, 230, 0.10);
+  --color-border-hi:   rgba(240, 237, 230, 0.20);
+
+  --color-text:        #f0ede6;
+  --color-muted:       #6b6760;
+
+  --color-lime:        #d4ff00;
+  --color-lime-dark:   #b8dc00;
+
+  --color-green:       #00e676;
+  --color-green-dark:  #00c060;
+  --color-red:         #ff4444;
+  --color-amber:       #ffd166;
 }
 
 * {
@@ -26,9 +29,9 @@
 }
 
 body {
-  font-family: 'Fredoka', sans-serif;
-  background-color: var(--color-navy);
-  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -37,7 +40,7 @@ body {
   min-height: 100vh;
 }
 
-/* Card flip animation */
+/* ─── Card flip ─────────────────────────────────────────── */
 .card-container {
   perspective: 1000px;
 }
@@ -46,7 +49,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
 
@@ -59,7 +62,7 @@ body {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,39 +72,29 @@ body {
   transform: rotateY(180deg);
 }
 
-/* Card back pattern */
+/* Card back — clean minimal */
 .card-back-pattern {
-  background: linear-gradient(135deg, var(--color-navy-card) 25%, transparent 25%),
-    linear-gradient(225deg, var(--color-navy-card) 25%, transparent 25%),
-    linear-gradient(45deg, var(--color-navy-card) 25%, transparent 25%),
-    linear-gradient(315deg, var(--color-navy-card) 25%, transparent 25%);
-  background-size: 20px 20px;
-  background-position: 10px 0, 10px 0, 0 0, 0 0;
-  background-color: var(--color-slate-card);
+  background-color: var(--color-surface-up);
+  border: 1.5px solid rgba(240, 237, 230, 0.10);
 }
 
 /* Matched card glow */
 .card-matched {
-  box-shadow: 0 0 20px rgba(38, 222, 129, 0.5), 0 0 40px rgba(38, 222, 129, 0.2);
+  box-shadow: 0 0 0 2px var(--color-green), 0 0 18px rgba(0, 230, 118, 0.25);
 }
 
-/* Score pop animation */
+/* ─── Animations ─────────────────────────────────────────── */
 @keyframes score-pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.3); }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.35); }
   100% { transform: scale(1); }
 }
+.score-pop { animation: score-pop 0.3s ease-out; }
 
-.score-pop {
-  animation: score-pop 0.3s ease-out;
-}
-
-/* Confetti */
 @keyframes confetti-fall {
-  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  0%   { transform: translateY(-100vh) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(100vh)  rotate(720deg); opacity: 0; }
 }
-
 .confetti-piece {
   position: fixed;
   top: 0;
@@ -110,33 +103,27 @@ body {
   z-index: 50;
 }
 
-/* Bounce in */
 @keyframes bounce-in {
-  0% { transform: scale(0); opacity: 0; }
-  60% { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
+  0%   { transform: scale(0);    opacity: 0; }
+  60%  { transform: scale(1.06);             }
+  100% { transform: scale(1);    opacity: 1; }
 }
+.bounce-in { animation: bounce-in 0.35s ease-out forwards; }
 
-.bounce-in {
-  animation: bounce-in 0.5s ease-out forwards;
-}
-
-/* Pulse glow for active player */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(254, 202, 87, 0.4); }
-  50% { box-shadow: 0 0 20px rgba(254, 202, 87, 0.8); }
+  0%, 100% { box-shadow: 0 0 8px  rgba(212, 255, 0, 0.3); }
+  50%       { box-shadow: 0 0 22px rgba(212, 255, 0, 0.7); }
 }
+.active-player { animation: pulse-glow 1.5s ease-in-out infinite; }
 
-.active-player {
-  animation: pulse-glow 1.5s ease-in-out infinite;
-}
-
-/* Slide up */
 @keyframes slide-up {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
+.slide-up { animation: slide-up 0.28s ease-out forwards; }
 
-.slide-up {
-  animation: slide-up 0.4s ease-out forwards;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
+.fade-in { animation: fade-in 0.3s ease-out forwards; }

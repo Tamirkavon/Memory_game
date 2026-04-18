@@ -6,31 +6,35 @@ interface CardProps {
   categoryColor: string;
 }
 
-export function Card({ card, onClick, categoryColor }: CardProps) {
+export function Card({ card, onClick }: CardProps) {
   const isRevealed = card.isFlipped || card.isMatched;
 
   return (
     <div
-      className="card-container aspect-square cursor-pointer select-none"
+      className="card-container w-full aspect-square cursor-pointer select-none"
       onClick={() => !isRevealed && onClick(card.id)}
     >
       <div className={`card-inner ${isRevealed ? 'flipped' : ''}`}>
         {/* Back (face-down) */}
         <div
-          className={`card-back card-back-pattern border-2 border-white/10 hover:border-white/30
-            transition-colors duration-200 ${!isRevealed ? 'hover:scale-[1.03]' : ''}`}
-          style={{ transition: 'transform 0.15s ease, border-color 0.2s ease' }}
+          className="card-back card-back-pattern transition-all duration-200"
+          style={{
+            border: '1.5px solid rgba(240,237,230,0.10)',
+            ...((!isRevealed) ? {} : {}),
+          }}
         >
-          <span className="text-2xl sm:text-3xl opacity-40">?</span>
+          <span style={{ color: '#6b6760', fontSize: '1.5rem' }}>?</span>
         </div>
 
         {/* Front (face-up) */}
         <div
-          className={`card-front border-2 p-1.5 sm:p-2 text-center
-            ${card.isMatched
-              ? 'card-matched border-mint bg-navy-light'
-              : `border-white/20 bg-navy-light`
-            }`}
+          className="card-front p-1.5 sm:p-2 text-center"
+          style={{
+            border: card.isMatched
+              ? '1.5px solid #00e676'
+              : '1.5px solid rgba(240,237,230,0.15)',
+            background: card.isMatched ? 'rgba(0,230,118,0.06)' : '#191714',
+          }}
         >
           <div
             className={`flex items-center justify-center w-full h-full ${
@@ -40,7 +44,13 @@ export function Card({ card, onClick, categoryColor }: CardProps) {
           >
             <span
               className={`leading-tight font-medium ${getTextSize(card.content)}`}
-              style={{ color: card.type === 'answer' ? getAnswerColorHex(categoryColor) : 'white' }}
+              style={{
+                color: card.isMatched
+                  ? '#00e676'
+                  : card.type === 'answer'
+                  ? '#d4ff00'
+                  : '#f0ede6',
+              }}
             >
               {card.content}
             </span>
@@ -56,16 +66,4 @@ function getTextSize(content: string): string {
   if (content.length <= 8) return 'text-sm sm:text-base';
   if (content.length <= 15) return 'text-xs sm:text-sm';
   return 'text-[10px] sm:text-xs';
-}
-
-function getAnswerColorHex(categoryColor: string): string {
-  if (categoryColor.includes('blue')) return '#00d2d3';
-  if (categoryColor.includes('pink')) return '#ff6b9d';
-  if (categoryColor.includes('orange')) return '#feca57';
-  if (categoryColor.includes('green')) return '#26de81';
-  if (categoryColor.includes('red')) return '#ff6b6b';
-  if (categoryColor.includes('purple')) return '#a855f7';
-  if (categoryColor.includes('cyan')) return '#4ecdc4';
-  if (categoryColor.includes('yellow')) return '#feca57';
-  return '#00d2d3';
 }

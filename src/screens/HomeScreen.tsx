@@ -4,42 +4,51 @@ export function HomeScreen() {
   const { dispatch } = useGame();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -left-20 w-64 h-64 bg-coral/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-teal/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-10 w-40 h-40 bg-amber/10 rounded-full blur-2xl" />
-      </div>
+    <div
+      className="min-h-screen flex flex-col justify-center px-6 py-10 relative overflow-hidden"
+      style={{ background: '#0e0d0b' }}
+    >
+      {/* Subtle lime glow — top right */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at top right, rgba(212,255,0,0.06) 0%, transparent 65%)',
+        }}
+      />
 
-      <div className="relative z-10 text-center">
-        {/* Logo / Title */}
-        <div className="mb-2">
-          <span className="text-6xl sm:text-7xl">🧠</span>
+      <div className="relative z-10 max-w-lg">
+        {/* Icon */}
+        <div className="mb-6">
+          <span className="text-5xl">⚡</span>
         </div>
-        <h1 className="text-5xl sm:text-6xl font-bold mb-3 bg-gradient-to-r from-coral via-amber to-teal bg-clip-text text-transparent">
-          Memory Game
+
+        {/* Title — left-aligned, bold, no gradient */}
+        <h1
+          className="font-bold uppercase leading-none mb-4"
+          style={{
+            fontSize: 'clamp(3.5rem, 10vw, 6rem)',
+            letterSpacing: '-0.03em',
+            color: '#f0ede6',
+          }}
+        >
+          WORD<br />RUSH
         </h1>
-        <p className="text-white/50 text-lg mb-10">
-          Learn English, one match at a time
+
+        <p className="text-lg mb-12" style={{ color: '#6b6760' }}>
+          Level up your English vocabulary
         </p>
 
-        {/* Play button */}
+        {/* CTA — lime on dark, not a pink gradient */}
         <button
           onClick={() => dispatch({ type: 'SET_SCREEN', screen: 'mode-select' })}
-          className="group relative px-12 py-4 bg-gradient-to-r from-coral to-coral-dark
-            text-white font-bold text-xl rounded-2xl
-            hover:scale-105 active:scale-95 transition-all duration-200
-            shadow-lg shadow-coral/30 hover:shadow-xl hover:shadow-coral/40"
+          className="inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-lg
+            uppercase tracking-wide transition-all duration-150
+            hover:scale-[1.03] active:scale-[0.97]"
+          style={{ background: '#d4ff00', color: '#0e0d0b' }}
         >
           Play
-          <span className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <span>→</span>
         </button>
-
-        {/* Credits */}
-        <p className="mt-12 text-white/20 text-sm">
-          Made for Shachar 🎓
-        </p>
       </div>
     </div>
   );

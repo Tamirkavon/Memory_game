@@ -1,0 +1,15 @@
+- generic [ref=e397]:
+  - generic [ref=e398]:
+    - button "✕ Quit" [ref=e399]
+    - generic [ref=e401]: 1/12
+    - generic [ref=e403]: 00:01
+  - generic [ref=e405]: ✓ 0 correct
+  - generic [ref=e406]:
+    - generic [ref=e407]:
+      - text: Don't share your
+      - text: with anyone
+    - generic [ref=e409]:
+      - button "profile" [ref=e410]
+      - button "hashtag" [ref=e411]
+      - button "password" [ref=e412]
+      - button "Wi-Fi" [ref=e413]

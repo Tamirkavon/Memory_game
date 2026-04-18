@@ -1,4 +1,4 @@
-export type GameMode = 'en-he' | 'en-emoji' | 'en-definition' | 'fill-blank';
+export type GameMode = 'en-he' | 'fill-blank';
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -49,6 +49,11 @@ export type Screen =
   | 'game'
   | 'victory';
 
+export interface ActiveCategory {
+  icon: string;
+  name: string;
+}
+
 export interface GameState {
   screen: Screen;
   gameMode: GameMode | null;
@@ -64,6 +69,7 @@ export interface GameState {
   elapsedSeconds: number;
   isProcessing: boolean;
   gameStarted: boolean;
+  activeCategories: ActiveCategory[];
 }
 
 export type GameAction =
@@ -73,9 +79,10 @@ export type GameAction =
   | { type: 'SET_DIFFICULTY'; difficulty: Difficulty }
   | { type: 'SET_PLAYER_COUNT'; count: 1 | 2 }
   | { type: 'SET_PLAYER_NAMES'; names: string[] }
-  | { type: 'START_GAME'; cards: GameCard[] }
+  | { type: 'START_GAME'; cards: GameCard[]; activeCategories: ActiveCategory[] }
   | { type: 'FLIP_CARD'; cardId: string }
   | { type: 'MATCH_FOUND'; pairId: string }
   | { type: 'MISMATCH' }
   | { type: 'TICK' }
+  | { type: 'QUIZ_FINISH'; correct: number; total: number; elapsedSeconds: number }
   | { type: 'RESET' };

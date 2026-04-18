@@ -4,6 +4,7 @@ import { ModeSelectScreen } from './screens/ModeSelectScreen';
 import { CategorySelectScreen } from './screens/CategorySelectScreen';
 import { DifficultySelectScreen } from './screens/DifficultySelectScreen';
 import { GameScreen } from './screens/GameScreen';
+import { SentenceQuizScreen } from './screens/SentenceQuizScreen';
 import { VictoryScreen } from './screens/VictoryScreen';
 
 function AppRouter() {
@@ -19,7 +20,7 @@ function AppRouter() {
     case 'difficulty-select':
       return <DifficultySelectScreen />;
     case 'game':
-      return <GameScreen />;
+      return state.gameMode === 'fill-blank' ? <SentenceQuizScreen /> : <GameScreen />;
     case 'victory':
       return <VictoryScreen />;
     default:

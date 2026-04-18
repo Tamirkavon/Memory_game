@@ -1,0 +1,28 @@
+- generic [ref=e10]:
+  - button "← Back" [ref=e11]
+  - generic [ref=e12]:
+    - heading "Game Mode" [level=2] [ref=e13]
+    - paragraph [ref=e14]: How do you want to play?
+    - generic [ref=e15]:
+      - button "Classic מה זה? 🃏 Memory Flip cards to match English words with their Hebrew translations" [active] [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: Classic
+        - button "מה זה?" [ref=e19]: i
+        - generic [ref=e20]:
+          - generic [ref=e21]: 🃏
+          - generic [ref=e22]:
+            - generic [ref=e23]: Memory
+            - generic [ref=e24]: Flip cards to match English words with their Hebrew translations
+      - button "Quiz מה זה? ✏️ Sentence Quiz Read a sentence and pick the missing word from 4 choices" [ref=e26] [cursor=pointer]:
+        - generic [ref=e27]: Quiz
+        - button "מה זה?" [ref=e28]: i
+        - generic [ref=e29]:
+          - generic [ref=e30]: ✏️
+          - generic [ref=e31]:
+            - generic [ref=e32]: Sentence Quiz
+            - generic [ref=e33]: Read a sentence and pick the missing word from 4 choices
+    - generic [ref=e36]:
+      - generic [ref=e37]: Players
+      - generic [ref=e38]:
+        - button "🧑 Solo" [ref=e39]
+        - button "👥 1 vs 1" [ref=e40]
+    - button "Continue →" [ref=e35]

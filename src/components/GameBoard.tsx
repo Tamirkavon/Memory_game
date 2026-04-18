@@ -15,7 +15,7 @@ export function GameBoard() {
       {state.cards.map((card, i) => (
         <div
           key={card.id}
-          className="bounce-in"
+          className="bounce-in w-full"
           style={{ animationDelay: `${i * 20}ms` }}
         >
           <Card

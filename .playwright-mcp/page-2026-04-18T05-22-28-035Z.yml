@@ -1,0 +1,15 @@
+- generic [ref=e93]:
+  - generic [ref=e94]:
+    - button "✕ Quit" [ref=e95]
+    - generic [ref=e97]: 1/12
+    - generic [ref=e99]: 00:01
+  - generic [ref=e101]: ✓ 0 correct
+  - generic [ref=e103]:
+    - generic [ref=e104]:
+      - text: This sauce is too
+      - text: for me
+    - generic [ref=e106]:
+      - button "blender" [ref=e107]
+      - button "spicy" [ref=e108]
+      - button "oven" [ref=e109]
+      - button "snack" [ref=e110]

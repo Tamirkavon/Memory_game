@@ -8,19 +8,20 @@ export function ScoreBar() {
   if (state.playerCount === 1) {
     return (
       <div className="flex items-center justify-between w-full max-w-4xl mx-auto px-4 py-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           <Stat label="Time" value={formatTime(state.elapsedSeconds)} />
           <Stat label="Moves" value={String(state.moves)} />
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-white/60 text-sm">
+          <span className="text-xs tabular-nums" style={{ color: '#6b6760' }}>
             {state.matchedPairIds.length}/{totalPairs}
           </span>
-          <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+          <div className="w-24 h-1.5 rounded-full overflow-hidden" style={{ background: '#231f1a' }}>
             <div
-              className="h-full bg-gradient-to-r from-teal to-mint rounded-full transition-all duration-300"
+              className="h-full rounded-full transition-all duration-300"
               style={{
                 width: `${(state.matchedPairIds.length / totalPairs) * 100}%`,
+                background: '#d4ff00',
               }}
             />
           </div>
@@ -36,19 +37,21 @@ export function ScoreBar() {
         name={state.players[0].name}
         score={state.players[0].score}
         isActive={state.currentPlayerIndex === 0}
-        color="coral"
+        color="#d4ff00"
       />
-      <div className="flex flex-col items-center">
-        <span className="text-white/40 text-xs">Moves: {state.moves}</span>
-        <span className="text-white/40 text-xs">
-          {state.matchedPairIds.length}/{totalPairs}
+      <div className="flex flex-col items-center gap-0.5">
+        <span className="text-xs tabular-nums" style={{ color: '#6b6760' }}>
+          {state.matchedPairIds.length}/{totalPairs} pairs
+        </span>
+        <span className="text-xs tabular-nums" style={{ color: '#6b6760' }}>
+          {state.moves} moves
         </span>
       </div>
       <PlayerBadge
         name={state.players[1].name}
         score={state.players[1].score}
         isActive={state.currentPlayerIndex === 1}
-        color="teal"
+        color="#00e676"
       />
     </div>
   );
@@ -56,21 +59,16 @@ export function ScoreBar() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col items-center">
-      <span className="text-white/50 text-xs uppercase tracking-wider">
+    <div className="flex flex-col">
+      <span className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6760' }}>
         {label}
       </span>
-      <span className="text-white font-semibold text-lg tabular-nums">
+      <span className="font-semibold tabular-nums" style={{ color: '#f0ede6' }}>
         {value}
       </span>
     </div>
   );
 }
-
-const PLAYER_COLORS: Record<string, { border: string; bg: string; text: string }> = {
-  coral: { border: '#ff6b6b', bg: 'rgba(255,107,107,0.1)', text: '#ff6b6b' },
-  teal: { border: '#00d2d3', bg: 'rgba(0,210,211,0.1)', text: '#00d2d3' },
-};
 
 function PlayerBadge({
   name,
@@ -83,27 +81,24 @@ function PlayerBadge({
   isActive: boolean;
   color: string;
 }) {
-  const c = PLAYER_COLORS[color] || PLAYER_COLORS.coral;
-
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-2 rounded-xl border-2 transition-all duration-300
-        ${isActive ? 'active-player' : ''}`}
+      className="flex items-center gap-3 px-4 py-2 rounded-xl border transition-all duration-300"
       style={
         isActive
-          ? { borderColor: c.border, backgroundColor: c.bg }
-          : { borderColor: 'rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.05)' }
+          ? { borderColor: color, background: `${color}14` }
+          : { borderColor: 'rgba(240,237,230,0.08)', background: '#191714' }
       }
     >
       <span
-        className="font-semibold"
-        style={{ color: isActive ? c.text : 'rgba(255,255,255,0.6)' }}
+        className="font-semibold text-sm"
+        style={{ color: isActive ? color : '#6b6760' }}
       >
         {name}
       </span>
       <span
         className={`text-2xl font-bold ${score > 0 ? 'score-pop' : ''}`}
-        style={{ color: isActive ? 'white' : 'rgba(255,255,255,0.4)' }}
+        style={{ color: isActive ? '#f0ede6' : '#3a3832' }}
         key={score}
       >
         {score}

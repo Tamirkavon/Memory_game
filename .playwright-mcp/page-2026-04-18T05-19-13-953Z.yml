@@ -1,0 +1,84 @@
+- generic [ref=e98]:
+  - button "✕ Quit" [ref=e100]
+  - generic [ref=e101]:
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - generic [ref=e104]: Time
+        - generic [ref=e105]: 00:01
+      - generic [ref=e106]:
+        - generic [ref=e107]: Moves
+        - generic [ref=e108]: "0"
+    - generic [ref=e110]: 0/12
+  - generic [ref=e113]:
+    - generic [ref=e116] [cursor=pointer]:
+      - generic [ref=e118]: "?"
+      - generic [ref=e121]: subject
+    - generic [ref=e124] [cursor=pointer]:
+      - generic [ref=e126]: "?"
+      - generic [ref=e129]: מטלה
+    - generic [ref=e132] [cursor=pointer]:
+      - generic [ref=e134]: "?"
+      - generic [ref=e137]: מורה
+    - generic [ref=e140] [cursor=pointer]:
+      - generic [ref=e142]: "?"
+      - generic [ref=e145]: ציון
+    - generic [ref=e148] [cursor=pointer]:
+      - generic [ref=e150]: "?"
+      - generic [ref=e153]: textbook
+    - generic [ref=e156] [cursor=pointer]:
+      - generic [ref=e158]: "?"
+      - generic [ref=e161]: attendance
+    - generic [ref=e164] [cursor=pointer]:
+      - generic [ref=e166]: "?"
+      - generic [ref=e169]: classroom
+    - generic [ref=e172] [cursor=pointer]:
+      - generic [ref=e174]: "?"
+      - generic [ref=e177]: exam
+    - generic [ref=e180] [cursor=pointer]:
+      - generic [ref=e182]: "?"
+      - generic [ref=e185]: הפסקה
+    - generic [ref=e188] [cursor=pointer]:
+      - generic [ref=e190]: "?"
+      - generic [ref=e193]: מבחן
+    - generic [ref=e196] [cursor=pointer]:
+      - generic [ref=e198]: "?"
+      - generic [ref=e201]: מקצוע
+    - generic [ref=e204] [cursor=pointer]:
+      - generic [ref=e206]: "?"
+      - generic [ref=e209]: תלמיד
+    - generic [ref=e212] [cursor=pointer]:
+      - generic [ref=e214]: "?"
+      - generic [ref=e217]: כיתה
+    - generic [ref=e220] [cursor=pointer]:
+      - generic [ref=e222]: "?"
+      - generic [ref=e225]: student
+    - generic [ref=e228] [cursor=pointer]:
+      - generic [ref=e230]: "?"
+      - generic [ref=e233]: ספר לימוד
+    - generic [ref=e236] [cursor=pointer]:
+      - generic [ref=e238]: "?"
+      - generic [ref=e241]: assignment
+    - generic [ref=e244] [cursor=pointer]:
+      - generic [ref=e246]: "?"
+      - generic [ref=e249]: homework
+    - generic [ref=e252] [cursor=pointer]:
+      - generic [ref=e254]: "?"
+      - generic [ref=e257]: שיעורי בית
+    - generic [ref=e260] [cursor=pointer]:
+      - generic [ref=e262]: "?"
+      - generic [ref=e265]: מערכת שעות
+    - generic [ref=e268] [cursor=pointer]:
+      - generic [ref=e270]: "?"
+      - generic [ref=e273]: recess
+    - generic [ref=e276] [cursor=pointer]:
+      - generic [ref=e278]: "?"
+      - generic [ref=e281]: teacher
+    - generic [ref=e284] [cursor=pointer]:
+      - generic [ref=e286]: "?"
+      - generic [ref=e289]: schedule
+    - generic [ref=e292] [cursor=pointer]:
+      - generic [ref=e294]: "?"
+      - generic [ref=e297]: grade
+    - generic [ref=e300] [cursor=pointer]:
+      - generic [ref=e302]: "?"
+      - generic [ref=e305]: נוכחות

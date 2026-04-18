@@ -1,0 +1,84 @@
+- generic [ref=e107]:
+  - button "✕ Quit" [ref=e109]
+  - generic [ref=e110]:
+    - generic [ref=e111]:
+      - generic [ref=e112]:
+        - generic [ref=e113]: Time
+        - generic [ref=e114]: 00:01
+      - generic [ref=e115]:
+        - generic [ref=e116]: Moves
+        - generic [ref=e117]: "0"
+    - generic [ref=e119]: 0/12
+  - generic [ref=e122]:
+    - generic [ref=e125] [cursor=pointer]:
+      - generic [ref=e127]: "?"
+      - generic [ref=e130]: מתכון
+    - generic [ref=e133] [cursor=pointer]:
+      - generic [ref=e135]: "?"
+      - generic [ref=e138]: vegetable
+    - generic [ref=e141] [cursor=pointer]:
+      - generic [ref=e143]: "?"
+      - generic [ref=e146]: טעם
+    - generic [ref=e149] [cursor=pointer]:
+      - generic [ref=e151]: "?"
+      - generic [ref=e154]: בלנדר
+    - generic [ref=e157] [cursor=pointer]:
+      - generic [ref=e159]: "?"
+      - generic [ref=e162]: לחם
+    - generic [ref=e165] [cursor=pointer]:
+      - generic [ref=e167]: "?"
+      - generic [ref=e170]: spicy
+    - generic [ref=e173] [cursor=pointer]:
+      - generic [ref=e175]: "?"
+      - generic [ref=e178]: recipe
+    - generic [ref=e181] [cursor=pointer]:
+      - generic [ref=e183]: "?"
+      - generic [ref=e186]: juice
+    - generic [ref=e189] [cursor=pointer]:
+      - generic [ref=e191]: "?"
+      - generic [ref=e194]: מיץ
+    - generic [ref=e197] [cursor=pointer]:
+      - generic [ref=e199]: "?"
+      - generic [ref=e202]: lunch
+    - generic [ref=e205] [cursor=pointer]:
+      - generic [ref=e207]: "?"
+      - generic [ref=e210]: flavor
+    - generic [ref=e213] [cursor=pointer]:
+      - generic [ref=e215]: "?"
+      - generic [ref=e218]: ירק
+    - generic [ref=e221] [cursor=pointer]:
+      - generic [ref=e223]: "?"
+      - generic [ref=e226]: oven
+    - generic [ref=e229] [cursor=pointer]:
+      - generic [ref=e231]: "?"
+      - generic [ref=e234]: fruit
+    - generic [ref=e237] [cursor=pointer]:
+      - generic [ref=e239]: "?"
+      - generic [ref=e242]: חריף
+    - generic [ref=e245] [cursor=pointer]:
+      - generic [ref=e247]: "?"
+      - generic [ref=e250]: snack
+    - generic [ref=e253] [cursor=pointer]:
+      - generic [ref=e255]: "?"
+      - generic [ref=e258]: ארוחת צהריים
+    - generic [ref=e261] [cursor=pointer]:
+      - generic [ref=e263]: "?"
+      - generic [ref=e266]: dessert
+    - generic [ref=e269] [cursor=pointer]:
+      - generic [ref=e271]: "?"
+      - generic [ref=e274]: blender
+    - generic [ref=e277] [cursor=pointer]:
+      - generic [ref=e279]: "?"
+      - generic [ref=e282]: bread
+    - generic [ref=e285] [cursor=pointer]:
+      - generic [ref=e287]: "?"
+      - generic [ref=e290]: קינוח
+    - generic [ref=e293] [cursor=pointer]:
+      - generic [ref=e295]: "?"
+      - generic [ref=e298]: תנור
+    - generic [ref=e301] [cursor=pointer]:
+      - generic [ref=e303]: "?"
+      - generic [ref=e306]: חטיף
+    - generic [ref=e309] [cursor=pointer]:
+      - generic [ref=e311]: "?"
+      - generic [ref=e314]: פרי

@@ -1,0 +1,13 @@
+- generic [ref=e93]:
+  - generic [ref=e94]:
+    - button "✕ Quit" [ref=e95]
+    - generic [ref=e97]: 9/12
+    - generic [ref=e99]: 01:40
+  - generic [ref=e101]: ✓ 7 correct
+  - generic [ref=e103]:
+    - generic [ref=e104]: I eat eggs for
+    - generic [ref=e106]:
+      - button "dessert" [ref=e132]
+      - button "spicy" [ref=e131]
+      - button "vegetable" [ref=e135]
+      - button "breakfast" [ref=e136]

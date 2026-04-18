@@ -1,0 +1,9 @@
+- generic [ref=e4]:
+  - generic [ref=e5]: ⚡
+  - heading "WORD RUSH" [level=1] [ref=e6]:
+    - text: WORD
+    - text: RUSH
+  - paragraph [ref=e7]: Level up your English vocabulary
+  - button "Play →" [ref=e8]:
+    - text: Play
+    - generic [ref=e9]: →

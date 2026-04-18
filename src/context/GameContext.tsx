@@ -16,6 +16,7 @@ const initialState: GameState = {
   elapsedSeconds: 0,
   isProcessing: false,
   gameStarted: false,
+  activeCategories: [],
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -58,6 +59,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         cards: action.cards,
+        activeCategories: action.activeCategories,
         flippedCardIds: [],
         matchedPairIds: [],
         moves: 0,
@@ -135,6 +137,16 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'TICK':
       return { ...state, elapsedSeconds: state.elapsedSeconds + 1 };
+
+    case 'QUIZ_FINISH':
+      return {
+        ...state,
+        matchedPairIds: Array.from({ length: action.correct }, (_, i) => `q${i}`),
+        moves: action.total,
+        elapsedSeconds: action.elapsedSeconds,
+        screen: 'victory',
+        gameStarted: false,
+      };
 
     case 'RESET':
       return { ...initialState };

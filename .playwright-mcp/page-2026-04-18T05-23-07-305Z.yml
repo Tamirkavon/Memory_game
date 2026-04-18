@@ -1,0 +1,15 @@
+- generic [ref=e93]:
+  - generic [ref=e94]:
+    - button "✕ Quit" [ref=e95]
+    - generic [ref=e97]: 3/12
+    - generic [ref=e99]: 00:40
+  - generic [ref=e101]: ✓ 2 correct
+  - generic [ref=e103]:
+    - generic [ref=e104]:
+      - text: I followed the
+      - text: step by step
+    - generic [ref=e106]:
+      - button "fruit" [ref=e115]
+      - button "recipe" [ref=e116]
+      - button "snack" [ref=e117]
+      - button "vegetable" [ref=e118]

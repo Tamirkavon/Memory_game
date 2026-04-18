@@ -2,17 +2,6 @@ import { useGame } from '../context/GameContext';
 import { categories } from '../data/categories';
 import { Category } from '../types';
 
-const CATEGORY_COLORS: Record<string, string> = {
-  school: 'from-blue-500/20 to-blue-600/10 border-blue-500/30 hover:border-blue-400',
-  clothing: 'from-pink-500/20 to-pink-600/10 border-pink-500/30 hover:border-pink-400',
-  home: 'from-orange-500/20 to-orange-600/10 border-orange-500/30 hover:border-orange-400',
-  hobbies: 'from-green-500/20 to-green-600/10 border-green-500/30 hover:border-green-400',
-  actions: 'from-red-500/20 to-red-600/10 border-red-500/30 hover:border-red-400',
-  feelings: 'from-purple-500/20 to-purple-600/10 border-purple-500/30 hover:border-purple-400',
-  technology: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 hover:border-cyan-400',
-  food: 'from-yellow-500/20 to-yellow-600/10 border-yellow-500/30 hover:border-yellow-400',
-};
-
 export function CategorySelectScreen() {
   const { dispatch } = useGame();
 
@@ -22,38 +11,63 @@ export function CategorySelectScreen() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen flex flex-col px-4 py-8" style={{ background: '#0e0d0b' }}>
       <button
         onClick={() => dispatch({ type: 'SET_SCREEN', screen: 'mode-select' })}
-        className="self-start text-white/40 hover:text-white/70 transition-colors mb-6"
+        className="self-start text-sm mb-8 transition-colors"
+        style={{ color: '#6b6760' }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#f0ede6')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = '#6b6760')}
       >
         ← Back
       </button>
 
-      <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-white">
-        Pick a Topic
-      </h2>
-      <p className="text-white/40 mb-8">Choose what words to practice</p>
+      <div className="max-w-2xl mx-auto w-full">
+        <h2
+          className="font-bold uppercase mb-1"
+          style={{ fontSize: '1.75rem', letterSpacing: '-0.02em', color: '#f0ede6' }}
+        >
+          Topic
+        </h2>
+        <p className="mb-8 text-sm" style={{ color: '#6b6760' }}>What words do you want to practice?</p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl">
-        {categories.map((cat, i) => (
-          <button
-            key={cat.id}
-            onClick={() => handleSelect(cat)}
-            className={`group p-5 rounded-2xl border-2 bg-gradient-to-br
-              transition-all duration-200 hover:scale-[1.03] active:scale-[0.97]
-              bounce-in ${CATEGORY_COLORS[cat.id] || 'border-white/10'}`}
-            style={{ animationDelay: `${i * 60}ms` }}
-          >
-            <span className="text-4xl block mb-3">{cat.icon}</span>
-            <span className="font-semibold text-white text-sm block">
-              {cat.name}
-            </span>
-            <span className="text-white/40 text-xs block mt-1" dir="rtl">
-              {cat.nameHebrew}
-            </span>
-          </button>
-        ))}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {categories.map((cat, i) => (
+            <button
+              key={cat.id}
+              onClick={() => handleSelect(cat)}
+              className="p-4 rounded-xl text-left transition-all duration-150
+                hover:scale-[1.02] active:scale-[0.98] bounce-in"
+              style={{
+                background: '#191714',
+                border: '1.5px solid rgba(240,237,230,0.10)',
+                animationDelay: `${i * 50}ms`,
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(212,255,0,0.4)';
+                (e.currentTarget as HTMLButtonElement).style.background = 'rgba(212,255,0,0.05)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(240,237,230,0.10)';
+                (e.currentTarget as HTMLButtonElement).style.background = '#191714';
+              }}
+            >
+              <span className="text-3xl block mb-2">{cat.icon}</span>
+              <span
+                className="font-semibold text-sm block leading-tight"
+                style={{ color: '#f0ede6' }}
+              >
+                {cat.name}
+              </span>
+              <span
+                className="text-xs block mt-1"
+                style={{ color: '#6b6760', direction: 'rtl', textAlign: 'right' }}
+              >
+                {cat.nameHebrew}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

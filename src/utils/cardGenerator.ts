@@ -1,33 +1,39 @@
-import { Category, Difficulty, GameCard, GameMode, PAIR_COUNTS, WordEntry } from '../types';
+import { ActiveCategory, Difficulty, GameCard, GameMode, PAIR_COUNTS, WordEntry } from '../types';
 import { categories } from '../data/categories';
 import { shuffle } from './shuffle';
 
 export function generateCards(
-  category: Category,
   mode: GameMode,
   difficulty: Difficulty
-): GameCard[] {
+): { cards: GameCard[]; activeCategories: ActiveCategory[] } {
   const pairCount = PAIR_COUNTS[difficulty];
+  const allWords = categories.flatMap((c) => c.words);
+  const words = shuffle(allWords).slice(0, pairCount);
 
-  // Get words — if category doesn't have enough, pull from others
-  let words = [...category.words];
-  if (words.length < pairCount) {
-    const otherWords = categories
-      .filter((c) => c.id !== category.id)
-      .flatMap((c) => c.words);
-    const extra = shuffle(otherWords).slice(0, pairCount - words.length);
-    words = [...words, ...extra];
-  }
-  words = shuffle(words).slice(0, pairCount);
+  // Determine which categories appear in the selected words
+  const wordToCat = new Map<string, ActiveCategory>();
+  categories.forEach((cat) => {
+    cat.words.forEach((w) => {
+      wordToCat.set(w.id, { icon: cat.icon, name: cat.name });
+    });
+  });
+  const seen = new Set<string>();
+  const activeCategories: ActiveCategory[] = [];
+  words.forEach((w) => {
+    const cat = wordToCat.get(w.id);
+    if (cat && !seen.has(cat.name)) {
+      seen.add(cat.name);
+      activeCategories.push(cat);
+    }
+  });
 
   const cards: GameCard[] = [];
-
   words.forEach((word) => {
     const pair = createPair(word, mode);
     cards.push(pair.question, pair.answer);
   });
 
-  return shuffle(cards);
+  return { cards: shuffle(cards), activeCategories };
 }
 
 function createPair(
@@ -38,7 +44,6 @@ function createPair(
 
   let questionContent: string;
   let answerContent: string;
-  let questionRtl = false;
   let answerRtl = false;
 
   switch (mode) {
@@ -47,18 +52,14 @@ function createPair(
       answerContent = word.hebrew;
       answerRtl = true;
       break;
-    case 'en-emoji':
-      questionContent = word.english;
-      answerContent = word.emoji;
-      break;
-    case 'en-definition':
-      questionContent = word.english;
-      answerContent = word.definition;
-      break;
     case 'fill-blank':
       questionContent = word.sentence;
       answerContent = word.english;
       break;
+    default:
+      questionContent = word.english;
+      answerContent = word.hebrew;
+      answerRtl = true;
   }
 
   return {
@@ -69,7 +70,7 @@ function createPair(
       type: 'question',
       isFlipped: false,
       isMatched: false,
-      isRtl: questionRtl,
+      isRtl: false,
     },
     answer: {
       id: `${pairId}-a`,

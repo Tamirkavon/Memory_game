@@ -1,0 +1,15 @@
+- generic [ref=e93]:
+  - generic [ref=e94]:
+    - button "✕ Quit" [ref=e95]
+    - generic [ref=e97]: 10/12
+    - generic [ref=e99]: 01:49
+  - generic [ref=e101]: ✓ 8 correct
+  - generic [ref=e103]:
+    - generic [ref=e104]:
+      - text: This pizza is
+      - text: "!"
+    - generic [ref=e106]:
+      - button "dessert" [ref=e132]
+      - button "flavor" [ref=e137]
+      - button "delicious" [ref=e138]
+      - button "recipe" [ref=e139]

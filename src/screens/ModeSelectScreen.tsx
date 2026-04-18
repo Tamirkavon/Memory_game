@@ -2,11 +2,30 @@ import { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { GameMode } from '../types';
 
-const MODES: { id: GameMode; label: string; icon: string; desc: string }[] = [
-  { id: 'en-he', label: 'English ↔ Hebrew', icon: '🇮🇱', desc: 'Match words to their Hebrew translation' },
-  { id: 'en-emoji', label: 'English ↔ Emoji', icon: '😄', desc: 'Match words to the right emoji' },
-  { id: 'en-definition', label: 'Word ↔ Definition', icon: '📖', desc: 'Match words to their English meaning' },
-  { id: 'fill-blank', label: 'Fill in the Blank', icon: '✏️', desc: 'Match sentences with missing words' },
+const MODES: {
+  id: GameMode;
+  label: string;
+  icon: string;
+  desc: string;
+  hebrewInfo: string;
+  tag: string;
+}[] = [
+  {
+    id: 'en-he',
+    label: 'Memory',
+    icon: '🃏',
+    desc: 'Flip cards to match English words with their Hebrew translations',
+    hebrewInfo: 'הופכים קלפים ומחפשים זוגות — מילה באנגלית מול התרגום שלה בעברית.',
+    tag: 'Classic',
+  },
+  {
+    id: 'fill-blank',
+    label: 'Sentence Quiz',
+    icon: '✏️',
+    desc: 'Read a sentence and pick the missing word from 4 choices',
+    hebrewInfo: 'קוראים משפט עם מקום ריק — ובוחרים את המילה הנכונה מתוך 4 אפשרויות.',
+    tag: 'Quiz',
+  },
 ];
 
 export function ModeSelectScreen() {
@@ -14,117 +33,196 @@ export function ModeSelectScreen() {
   const [playerCount, setPlayerCount] = useState<1 | 2>(state.playerCount);
   const [names, setNames] = useState(['', '']);
   const [selectedMode, setSelectedMode] = useState<GameMode | null>(null);
+  const [openInfo, setOpenInfo] = useState<GameMode | null>(null);
 
   const handleContinue = () => {
     if (!selectedMode) return;
     dispatch({ type: 'SET_MODE', mode: selectedMode });
-    dispatch({ type: 'SET_PLAYER_COUNT', count: playerCount });
-    if (playerCount === 2 && (names[0] || names[1])) {
-      dispatch({
-        type: 'SET_PLAYER_NAMES',
-        names: [names[0] || 'Player 1', names[1] || 'Player 2'],
-      });
+    if (selectedMode === 'en-he') {
+      dispatch({ type: 'SET_PLAYER_COUNT', count: playerCount });
+      if (playerCount === 2 && (names[0] || names[1])) {
+        dispatch({
+          type: 'SET_PLAYER_NAMES',
+          names: [names[0] || 'Player 1', names[1] || 'Player 2'],
+        });
+      }
     }
-    dispatch({ type: 'SET_SCREEN', screen: 'category-select' });
+    dispatch({ type: 'SET_SCREEN', screen: 'difficulty-select' });
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen flex flex-col px-4 py-8" style={{ background: '#0e0d0b' }}>
       <button
         onClick={() => dispatch({ type: 'SET_SCREEN', screen: 'home' })}
-        className="self-start text-white/40 hover:text-white/70 transition-colors mb-6"
+        className="self-start text-sm mb-8 transition-colors"
+        style={{ color: '#6b6760' }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#f0ede6')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = '#6b6760')}
       >
         ← Back
       </button>
 
-      <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-white">
-        Choose Game Mode
-      </h2>
-      <p className="text-white/40 mb-8">Pick how you want to match cards</p>
+      <div className="max-w-xl mx-auto w-full flex-1 flex flex-col">
+        <h2
+          className="font-bold uppercase mb-1"
+          style={{ fontSize: '1.75rem', letterSpacing: '-0.02em', color: '#f0ede6' }}
+        >
+          Game Mode
+        </h2>
+        <p className="mb-8 text-sm" style={{ color: '#6b6760' }}>How do you want to play?</p>
 
-      {/* Mode cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mb-10">
-        {MODES.map((mode) => (
-          <button
-            key={mode.id}
-            onClick={() => setSelectedMode(mode.id)}
-            className={`p-5 rounded-2xl border-2 text-left transition-all duration-200
-              hover:scale-[1.02] active:scale-[0.98]
-              ${selectedMode === mode.id
-                ? 'border-coral bg-coral/10 shadow-lg shadow-coral/20'
-                : 'border-white/10 bg-white/5 hover:border-white/20'
-              }`}
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-2xl">{mode.icon}</span>
-              <span className="font-semibold text-lg text-white">{mode.label}</span>
-            </div>
-            <p className="text-white/40 text-sm">{mode.desc}</p>
-          </button>
-        ))}
-      </div>
+        {/* Mode cards */}
+        <div className="flex flex-col gap-3 mb-8">
+          {MODES.map((mode) => {
+            const isSelected = selectedMode === mode.id;
+            const isInfoOpen = openInfo === mode.id;
 
-      {/* Player count */}
-      <div className="w-full max-w-2xl mb-8">
-        <h3 className="text-lg font-semibold text-white/70 mb-3">Players</h3>
-        <div className="flex gap-3">
-          <button
-            onClick={() => setPlayerCount(1)}
-            className={`flex-1 py-3 rounded-xl border-2 font-semibold transition-all
-              ${playerCount === 1
-                ? 'border-teal bg-teal/10 text-teal'
-                : 'border-white/10 text-white/40 hover:border-white/20'
-              }`}
-          >
-            🧑 Solo
-          </button>
-          <button
-            onClick={() => setPlayerCount(2)}
-            className={`flex-1 py-3 rounded-xl border-2 font-semibold transition-all
-              ${playerCount === 2
-                ? 'border-teal bg-teal/10 text-teal'
-                : 'border-white/10 text-white/40 hover:border-white/20'
-              }`}
-          >
-            👥 1 vs 1
-          </button>
+            return (
+              <div key={mode.id} className="flex flex-col gap-2">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => { setSelectedMode(mode.id); setOpenInfo(null); }}
+                  onKeyDown={(e) => e.key === 'Enter' && setSelectedMode(mode.id)}
+                  className="relative px-5 py-4 rounded-xl cursor-pointer transition-all duration-150
+                    hover:scale-[1.01] active:scale-[0.99] select-none"
+                  style={{
+                    background: isSelected ? 'rgba(212,255,0,0.08)' : '#191714',
+                    border: `1.5px solid ${isSelected ? '#d4ff00' : 'rgba(240,237,230,0.10)'}`,
+                  }}
+                >
+                  {/* Tag pill */}
+                  <span
+                    className="absolute top-3 right-12 text-[10px] font-bold uppercase tracking-widest
+                      px-2 py-0.5 rounded-full"
+                    style={{
+                      background: isSelected ? 'rgba(212,255,0,0.15)' : 'rgba(240,237,230,0.07)',
+                      color: isSelected ? '#d4ff00' : '#6b6760',
+                    }}
+                  >
+                    {mode.tag}
+                  </span>
+
+                  {/* Info button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenInfo(openInfo === mode.id ? null : mode.id);
+                    }}
+                    className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center
+                      justify-center text-xs font-bold transition-all"
+                    style={{
+                      background: isInfoOpen ? '#d4ff00' : 'rgba(240,237,230,0.1)',
+                      color: isInfoOpen ? '#0e0d0b' : '#6b6760',
+                    }}
+                    aria-label="מה זה?"
+                  >
+                    i
+                  </button>
+
+                  <div className="flex items-center gap-3 pr-20">
+                    <span className="text-2xl">{mode.icon}</span>
+                    <div>
+                      <div
+                        className="font-bold text-base"
+                        style={{ color: isSelected ? '#d4ff00' : '#f0ede6' }}
+                      >
+                        {mode.label}
+                      </div>
+                      <div className="text-xs mt-0.5" style={{ color: '#6b6760' }}>
+                        {mode.desc}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hebrew info */}
+                {isInfoOpen && (
+                  <div
+                    className="px-4 py-3 rounded-lg text-sm leading-relaxed slide-up"
+                    style={{
+                      background: 'rgba(212,255,0,0.05)',
+                      border: '1px solid rgba(212,255,0,0.2)',
+                      color: '#d4ff00',
+                      direction: 'rtl',
+                      fontFamily: 'system-ui, sans-serif',
+                    }}
+                  >
+                    {mode.hebrewInfo}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Player names for 2P */}
-        {playerCount === 2 && (
-          <div className="flex gap-3 mt-4 slide-up">
-            <input
-              type="text"
-              placeholder="Player 1 name"
-              value={names[0]}
-              onChange={(e) => setNames([e.target.value, names[1]])}
-              className="flex-1 px-4 py-3 bg-white/5 border-2 border-white/10 rounded-xl
-                text-white placeholder:text-white/30 focus:border-coral focus:outline-none"
-            />
-            <input
-              type="text"
-              placeholder="Player 2 name"
-              value={names[1]}
-              onChange={(e) => setNames([names[0], e.target.value])}
-              className="flex-1 px-4 py-3 bg-white/5 border-2 border-white/10 rounded-xl
-                text-white placeholder:text-white/30 focus:border-teal focus:outline-none"
-            />
+        {/* Players — only for memory mode */}
+        {selectedMode === 'en-he' && (
+          <div className="mb-8 slide-up">
+            <div className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: '#6b6760' }}>
+              Players
+            </div>
+            <div className="flex gap-2">
+              {([1, 2] as const).map((n) => (
+                <button
+                  key={n}
+                  onClick={() => setPlayerCount(n)}
+                  className="flex-1 py-3 rounded-lg border font-semibold text-sm transition-all"
+                  style={
+                    playerCount === n
+                      ? { background: 'rgba(212,255,0,0.1)', borderColor: '#d4ff00', color: '#d4ff00' }
+                      : { background: '#191714', borderColor: 'rgba(240,237,230,0.1)', color: '#6b6760' }
+                  }
+                >
+                  {n === 1 ? '🧑 Solo' : '👥 1 vs 1'}
+                </button>
+              ))}
+            </div>
+
+            {playerCount === 2 && (
+              <div className="flex gap-2 mt-3 slide-up">
+                {[0, 1].map((i) => (
+                  <input
+                    key={i}
+                    type="text"
+                    placeholder={`Player ${i + 1}`}
+                    value={names[i]}
+                    onChange={(e) => {
+                      const next = [...names];
+                      next[i] = e.target.value;
+                      setNames(next);
+                    }}
+                    className="flex-1 px-3 py-2.5 rounded-lg text-sm outline-none transition-colors"
+                    style={{
+                      background: '#191714',
+                      border: '1.5px solid rgba(240,237,230,0.1)',
+                      color: '#f0ede6',
+                    }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = '#d4ff00')}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(240,237,230,0.1)')}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
-      </div>
 
-      {/* Continue */}
-      <button
-        onClick={handleContinue}
-        disabled={!selectedMode}
-        className={`px-10 py-3 rounded-xl font-bold text-lg transition-all duration-200
-          ${selectedMode
-            ? 'bg-gradient-to-r from-coral to-coral-dark text-white hover:scale-105 active:scale-95 shadow-lg shadow-coral/30'
-            : 'bg-white/10 text-white/30 cursor-not-allowed'
-          }`}
-      >
-        Continue →
-      </button>
+        <div className="mt-auto">
+          <button
+            onClick={handleContinue}
+            disabled={!selectedMode}
+            className="w-full py-4 rounded-xl font-bold text-base uppercase tracking-wide
+              transition-all duration-150 hover:scale-[1.02] active:scale-[0.98]"
+            style={
+              selectedMode
+                ? { background: '#d4ff00', color: '#0e0d0b' }
+                : { background: '#191714', color: '#3a3832', cursor: 'not-allowed' }
+            }
+          >
+            Continue →
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

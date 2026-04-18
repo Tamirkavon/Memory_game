@@ -21,6 +21,6 @@ export const feelingsCategory: Category = {
     { id: 'fee-12', english: 'cheerful', hebrew: 'שמח ועליז', emoji: '😄', definition: 'Feeling happy and positive', sentence: 'She has a ___ personality' },
     { id: 'fee-13', english: 'disappointed', hebrew: 'מאוכזב', emoji: '😞', definition: 'Feeling sad because something didn\'t happen', sentence: 'I was ___ that the game was cancelled' },
     { id: 'fee-14', english: 'surprised', hebrew: 'מופתע', emoji: '😲', definition: 'Feeling shocked by something unexpected', sentence: 'I was ___ by the birthday party' },
-    { id: 'fee-15', english: 'overwhelmed', hebrew: 'מוצף', emoji: '🤯', definition: 'Feeling too much pressure at once', sentence: 'I felt ___ with all the homework' },
+    { id: 'fee-15', english: 'bored', hebrew: 'משועמם', emoji: '😑', definition: 'Feeling uninterested and tired', sentence: 'I feel ___ when there is nothing to do' },
   ],
 };

@@ -1,0 +1,19 @@
+- generic [ref=e79]:
+  - button "← Back" [ref=e80]
+  - generic [ref=e81]:
+    - generic [ref=e82]:
+      - heading "Difficulty" [level=2] [ref=e83]
+      - paragraph [ref=e84]: 🏫 School & Classroom
+    - generic [ref=e85]:
+      - button "Easy 12 pairs · 24 cards" [ref=e86]:
+        - generic [ref=e87]:
+          - generic [ref=e88]: Easy
+          - generic [ref=e89]: 12 pairs · 24 cards
+      - button "Medium 18 pairs · 36 cards" [ref=e90]:
+        - generic [ref=e91]:
+          - generic [ref=e92]: Medium
+          - generic [ref=e93]: 18 pairs · 36 cards
+      - button "Hard 24 pairs · 48 cards" [ref=e94]:
+        - generic [ref=e95]:
+          - generic [ref=e96]: Hard
+          - generic [ref=e97]: 24 pairs · 48 cards

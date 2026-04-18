@@ -1,0 +1,35 @@
+- generic [ref=e11]:
+  - button "← Back" [ref=e12]
+  - heading "Choose Game Mode" [level=2] [ref=e13]
+  - paragraph [ref=e14]: How do you want to match the cards?
+  - generic [ref=e15]:
+    - button "i 🇮🇱 English ↔ Hebrew Match words to their Hebrew translation" [active] [ref=e17]:
+      - button "i" [ref=e18]
+      - generic [ref=e19]:
+        - generic [ref=e20]: 🇮🇱
+        - generic [ref=e21]: English ↔ Hebrew
+      - paragraph [ref=e22]: Match words to their Hebrew translation
+    - button "i 😄 English ↔ Emoji Match words to the right emoji" [ref=e24]:
+      - button "i" [ref=e25]
+      - generic [ref=e26]:
+        - generic [ref=e27]: 😄
+        - generic [ref=e28]: English ↔ Emoji
+      - paragraph [ref=e29]: Match words to the right emoji
+    - button "i 📖 Word ↔ Definition Match words to their English meaning" [ref=e31]:
+      - button "i" [ref=e32]
+      - generic [ref=e33]:
+        - generic [ref=e34]: 📖
+        - generic [ref=e35]: Word ↔ Definition
+      - paragraph [ref=e36]: Match words to their English meaning
+    - button "i ✏️ Fill in the Blank Complete sentences with missing words" [ref=e38]:
+      - button "i" [ref=e39]
+      - generic [ref=e40]:
+        - generic [ref=e41]: ✏️
+        - generic [ref=e42]: Fill in the Blank
+      - paragraph [ref=e43]: Complete sentences with missing words
+  - generic [ref=e44]:
+    - heading "Players" [level=3] [ref=e45]
+    - generic [ref=e46]:
+      - button "🧑 Solo" [ref=e47]
+      - button "👥 1 vs 1" [ref=e48]
+  - button "Continue →" [ref=e49]

@@ -1,0 +1,16 @@
+- generic [ref=e146]:
+  - generic: ⚡
+  - heading "Quiz Done!" [level=2] [ref=e147]
+  - generic [ref=e149]:
+    - generic [ref=e150]:
+      - paragraph [ref=e151]: Correct
+      - paragraph [ref=e152]: 11/12
+    - generic [ref=e153]:
+      - paragraph [ref=e154]: Score
+      - paragraph [ref=e155]: 92%
+    - generic [ref=e156]:
+      - paragraph [ref=e157]: Time
+      - paragraph [ref=e158]: 02:11
+  - generic [ref=e159]:
+    - button "Play Again" [ref=e160]
+    - button "New Game" [ref=e161]
