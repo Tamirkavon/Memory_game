@@ -6,3 +6,6 @@ tmp_*.txt
 *.png
 .playwright-mcp/
 tsconfig.tsbuildinfo
+
+# Local Netlify folder
+.netlify
